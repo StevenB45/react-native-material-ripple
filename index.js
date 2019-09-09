@@ -12,6 +12,7 @@ export default class Ripple extends PureComponent {
     rippleDuration: 400,
     rippleSize: 0,
     rippleContainerBorderRadius: 0,
+    rippleOverflow: false,
     rippleCentered: false,
     rippleSequential: false,
     rippleFades: true,
@@ -29,6 +30,7 @@ export default class Ripple extends PureComponent {
     rippleDuration: PropTypes.number,
     rippleSize: PropTypes.number,
     rippleContainerBorderRadius: PropTypes.number,
+    rippleOverflow: PropTypes.bool,
     rippleCentered: PropTypes.bool,
     rippleSequential: PropTypes.bool,
     rippleFades: PropTypes.bool,
@@ -207,6 +209,7 @@ export default class Ripple extends PureComponent {
       pressRetentionOffset,
       children,
       rippleContainerBorderRadius,
+      rippleOverflow,
       testID,
       nativeID,
       accessible,
@@ -235,6 +238,7 @@ export default class Ripple extends PureComponent {
 
     let containerStyle = {
       borderRadius: rippleContainerBorderRadius,
+      overflow: rippleOverflow ? 'visible' : 'hidden'
     };
 
     return (

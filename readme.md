@@ -62,6 +62,7 @@ class Example extends Component {
  rippleSequential            | Ripple should start in sequence        |  Boolean | false
  rippleFades                 | Ripple fades out                       |  Boolean | true
  disabled                    | Ripple should ignore touches           |  Boolean | false
+ rippleOverflow              | Ripple overflow beyond its container   |  Boolean | false
  onPressIn                   | Touch moved in or started callback     | Function | -
  onPressOut                  | Touch moved out or terminated callback | Function | -
  onPress                     | Touch up inside bounds callback        | Function | -
