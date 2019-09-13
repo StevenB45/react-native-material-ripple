@@ -108,6 +108,7 @@ export default class Ripple extends PureComponent {
 
     if ('function' === typeof onPressIn) {
       onPressIn(event);
+      this.startRipple(event);
     }
   }
 
@@ -138,15 +139,15 @@ export default class Ripple extends PureComponent {
     let h2 = 0.5 * height;
 
     let { locationX, locationY } = rippleCentered?
-      { locationX: w2, locationY: h2 }:
-      event.nativeEvent;
+        { locationX: w2, locationY: h2 }:
+        event.nativeEvent;
 
     let offsetX = Math.abs(w2 - locationX);
     let offsetY = Math.abs(h2 - locationY);
 
     let R = rippleSize > 0?
-      0.5 * rippleSize:
-      Math.sqrt(Math.pow(w2 + offsetX, 2) + Math.pow(h2 + offsetY, 2));
+        0.5 * rippleSize:
+        Math.sqrt(Math.pow(w2 + offsetX, 2) + Math.pow(h2 + offsetY, 2));
 
     let ripple = {
       unique: this.unique++,
@@ -157,12 +158,12 @@ export default class Ripple extends PureComponent {
     };
 
     let animation = Animated
-      .timing(ripple.progress, {
-        toValue: 1,
-        easing: Easing.out(Easing.ease),
-        duration: rippleDuration,
-        useNativeDriver: true,
-      });
+        .timing(ripple.progress, {
+          toValue: 1,
+          easing: Easing.out(Easing.ease),
+          duration: rippleDuration,
+          useNativeDriver: true,
+        });
 
     onRippleAnimation(animation, this.onAnimationEnd);
 
@@ -185,15 +186,15 @@ export default class Ripple extends PureComponent {
       }],
 
       opacity: rippleFades?
-        progress.interpolate({
-          inputRange: [0, 1],
-          outputRange: [rippleOpacity, 0],
-        }):
-        rippleOpacity,
+          progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [rippleOpacity, 0],
+          }):
+          rippleOpacity,
     };
 
     return (
-      <Animated.View style={[styles.ripple, rippleStyle]} key={unique} />
+        <Animated.View style={[styles.ripple, rippleStyle]} key={unique} />
     );
   }
 
@@ -242,14 +243,14 @@ export default class Ripple extends PureComponent {
     };
 
     return (
-      <TouchableWithoutFeedback {...touchableProps}>
-        <Animated.View {...props} pointerEvents='box-only'>
-          {children}
-          <View style={[styles.container, containerStyle]}>
-            {ripples.map(this.renderRipple)}
-          </View>
-        </Animated.View>
-      </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback {...touchableProps}>
+          <Animated.View {...props} pointerEvents='box-only'>
+            {children}
+            <View style={[styles.container, containerStyle]}>
+              {ripples.map(this.renderRipple)}
+            </View>
+          </Animated.View>
+        </TouchableWithoutFeedback>
     );
   }
 }
